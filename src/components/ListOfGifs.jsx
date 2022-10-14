@@ -5,12 +5,9 @@ import { getGif } from "../services/getGif";
 
 export const ListOfGifs = ({ params }) => {
   const [loading, setLoading] = useState(false); //-> por defecto loading es false
-  //Es recomendable hacer un console.log(props) para saber que es lo que me esta llegando
-  // console.log(params);
+  //Es recomendable hacer un console.log(props) para saber que es lo que me esta llegando -> console.log(params);
   const { keyword } = params;
-  //use State
   const [gifs, setGifs] = useState([]);
-  //useEfect
   useEffect(() => {
     setLoading(true); //-> Antes de hacer la llamada a los gifs cambia el estado a true
     getGif({ keyword }).then((gifs) => {
@@ -19,7 +16,7 @@ export const ListOfGifs = ({ params }) => {
     });
   }, [keyword]);
 
-  if (loading) return <i>...Cargando</i>;
+  if (loading) return <i>Loading...</i>;
   //El keyword es un efecto secundario que si no tiene ningun valor eso quiere decir que se va a reenderizar una sola vez
 
   return (
